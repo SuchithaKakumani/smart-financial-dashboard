@@ -10,7 +10,8 @@ import {
   CreditCard,
   X,
   HeartPulse,
-  ChevronRight
+  ChevronRight,
+  Calculator
 } from 'lucide-react';
 import { useFinance } from '../context/FinanceContext';
 import { ViewTab } from '../types';
@@ -26,6 +27,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose, onOpenAIAdvis
 
   const navItems: { id: ViewTab; label: string; icon: React.FC<{ className?: string }>; badge?: string | number; badgeColor?: string }[] = [
     { id: 'overview', label: 'Overview', icon: LayoutDashboard },
+    { id: 'calculator', label: 'AI Calculator', icon: Calculator, badge: 'Smart', badgeColor: 'bg-emerald-500' },
     { id: 'transactions', label: 'Transactions', icon: ArrowLeftRight, badge: transactions.length },
     { id: 'analytics', label: 'Cash Flow & Analytics', icon: PieChart },
     { id: 'budgets', label: 'Smart Budgets', icon: WalletCards },

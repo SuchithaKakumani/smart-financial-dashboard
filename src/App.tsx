@@ -28,6 +28,7 @@ import { AIAdvisorModal } from './components/AIAdvisorModal';
 import { ExportReportModal } from './components/ExportReportModal';
 import { TransactionModal } from './components/TransactionModal';
 import { AIInsightsBanner } from './components/AIInsightsBanner';
+import { FinancialCalculator } from './components/FinancialCalculator';
 import { formatCurrency } from './utils/formatters';
 
 export const App: React.FC = () => {
@@ -136,6 +137,33 @@ export const App: React.FC = () => {
               {/* AI Insights & Alerts Carousel */}
               <AIInsightsBanner onOpenAdvisor={() => setIsAIAdvisorOpen(true)} />
 
+              {/* Calculator Quick Interactive Banner */}
+              <div 
+                onClick={() => setActiveTab('calculator')}
+                className="p-4 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-indigo-500/10 border border-emerald-500/20 hover:border-emerald-500/40 cursor-pointer transition-all flex items-center justify-between gap-4 group"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white font-bold flex-shrink-0 shadow-md shadow-emerald-500/20">
+                    <Sparkles className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                      <span>Interactive Financial Health & Scenario Calculator</span>
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-emerald-500 text-white">
+                        Try It
+                      </span>
+                    </h4>
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                      Input your own income, expenses, and debts to calculate your 50/30/20 split, emergency buffer, and receive tailored AI strategy suggestions.
+                    </p>
+                  </div>
+                </div>
+
+                <span className="hidden sm:flex items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-400 group-hover:translate-x-1 transition-transform">
+                  Launch Calculator <ArrowRight className="w-4 h-4" />
+                </span>
+              </div>
+
               {/* Two Column Layout: Charts & Breakdown */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 
@@ -240,6 +268,11 @@ export const App: React.FC = () => {
               </div>
 
             </div>
+          )}
+
+          {/* TAB: INTERACTIVE FINANCIAL CALCULATOR & AI SUGGESTIONS */}
+          {activeTab === 'calculator' && (
+            <FinancialCalculator onOpenAIAdvisor={() => setIsAIAdvisorOpen(true)} />
           )}
 
           {/* TAB 2: TRANSACTIONS */}

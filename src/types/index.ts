@@ -97,6 +97,7 @@ export interface CurrencyConfig {
 
 export type ViewTab = 
   | 'overview' 
+  | 'calculator'
   | 'transactions' 
   | 'analytics' 
   | 'budgets' 
@@ -104,3 +105,46 @@ export type ViewTab =
   | 'subscriptions' 
   | 'investments' 
   | 'ai-advisor';
+
+export interface CalculatorInputs {
+  monthlyIncome: number;
+  essentialExpenses: number; // Needs (Rent, groceries, utilities, insurance)
+  discretionaryExpenses: number; // Wants (Dining out, entertainment, shopping)
+  debtPayments: number; // Loans, credit cards, EMIs
+  currentSavings: number; // Current accumulated cash/investments
+  monthlyInvestment: number; // Planned monthly investment
+  annualReturnRate: number; // Expected return (e.g. 8%)
+  timeHorizonYears: number; // Time horizon (e.g. 5, 10, 20 years)
+}
+
+export interface CalculatorResults {
+  totalOutflows: number;
+  monthlySurplus: number;
+  savingsRate: number; // percentage
+  dtiRatio: number; // Debt-to-income percentage
+  needsPercent: number; // Actual % of income on needs
+  wantsPercent: number; // Actual % of income on wants
+  savingsPercent: number; // Actual % of income on savings/debt
+  emergencyFundMonths: number; // How many months essential expenses covered
+  futureWealthValue: number; // Compound wealth projection
+  totalContributions: number;
+  totalInterestEarned: number;
+  grade: 'A+' | 'A' | 'B' | 'C' | 'D';
+}
+
+export interface CalculatorAISuggestion {
+  verdict: string;
+  badgeColor: string;
+  summary: string;
+  recommendations: Array<{
+    title: string;
+    impact: string;
+    description: string;
+    type: 'positive' | 'warning' | 'tip';
+  }>;
+  rule503020Comparison: {
+    needs: { actual: number; ideal: number; diff: number; status: 'good' | 'high' };
+    wants: { actual: number; ideal: number; diff: number; status: 'good' | 'high' };
+    savings: { actual: number; ideal: number; diff: number; status: 'good' | 'low' };
+  };
+}
